@@ -1,0 +1,21 @@
+name: gitartwork
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *" # Runs every day at midnight
+jobs:
+  build:
+    name: make-gitartwork
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: jasineri/gitartwork@v1
+        with:
+          user_name: Prem759-0
+          text: PREM
+      - uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
