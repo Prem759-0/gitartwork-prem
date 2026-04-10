@@ -4,18 +4,19 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 0 * * *" # Runs every day at midnight
+    - cron: "0 0 * * *"
 jobs:
   build:
     name: make-gitartwork
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
+      # Step 1: Generate the artwork
       - uses: jasineri/gitartwork@v1
         with:
           user_name: Prem759-0
           text: PREM
-      - uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          
+      # Step 2: Save the image back to your repo (The missing part!)
+      - uses: jasineri/simple-push-action@v1
